@@ -1,4 +1,4 @@
-// source: in_sdk_header.proto
+// source: in_sdk_body_appmodule.proto
 /**
  * @fileoverview
  * @enhanceable
@@ -8,14 +8,13 @@
  */
 // GENERATED CODE -- DO NOT EDIT!
 
-goog.provide('proto.insider.sdk.TransProto');
+goog.provide('proto.insider.sdk.AppModuleCfgPermission');
 
 /**
  * @enum {number}
  */
-proto.insider.sdk.TransProto = {
-  TRANS_PROTO_INVALID: 0,
-  TCP: 1,
-  UDP: 2
+proto.insider.sdk.AppModuleCfgPermission = {
+  E_APP_MODULE_CFG_PERMISSION_ENABLE: 0,
+  E_APP_MODULE_CFG_PERMISSION_DISENABLE: 1
 };
 

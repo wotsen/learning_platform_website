@@ -14,7 +14,8 @@ goog.provide('proto.insider.sdk.IpVersion');
  * @enum {number}
  */
 proto.insider.sdk.IpVersion = {
-  IPV4: 0,
-  IPV6: 1
+  IP_VERSION_INVALID: 0,
+  IPV4: 1,
+  IPV6: 2
 };
 

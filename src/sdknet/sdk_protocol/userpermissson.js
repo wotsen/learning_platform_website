@@ -14,8 +14,9 @@ goog.provide('proto.insider.sdk.UserPermissson');
  * @enum {number}
  */
 proto.insider.sdk.UserPermissson = {
-  U_PERMISSION_ADMIN: 0,
-  U_PERMISSION_ADVANCED: 1,
-  U_PERMOSSION_NORMAL: 2
+  U_PERMISSION_INVALID: 0,
+  U_PERMISSION_ADMIN: 1,
+  U_PERMISSION_ADVANCED: 2,
+  U_PERMOSSION_NORMAL: 3
 };
 

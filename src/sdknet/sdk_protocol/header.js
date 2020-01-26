@@ -17,7 +17,6 @@ goog.require('proto.insider.sdk.DataTime');
 goog.require('proto.insider.sdk.Host');
 
 goog.forwardDeclare('proto.insider.sdk.DataFlow');
-goog.forwardDeclare('proto.insider.sdk.DataProto');
 goog.forwardDeclare('proto.insider.sdk.SdkMagic');
 goog.forwardDeclare('proto.insider.sdk.SdkVersion');
 goog.forwardDeclare('proto.insider.sdk.TransProto');
@@ -80,8 +79,8 @@ proto.insider.sdk.Header.toObject = function(includeInstance, msg) {
     time: (f = msg.getTime()) && proto.insider.sdk.DataTime.toObject(includeInstance, f),
     dataDir: jspb.Message.getFieldWithDefault(msg, 5, 0),
     host: (f = msg.getHost()) && proto.insider.sdk.Host.toObject(includeInstance, f),
-    transProto: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    dataProto: jspb.Message.getFieldWithDefault(msg, 8, 0)
+    dest: (f = msg.getDest()) && proto.insider.sdk.Host.toObject(includeInstance, f),
+    transProto: jspb.Message.getFieldWithDefault(msg, 8, 0)
   };
 
   if (includeInstance) {
@@ -145,12 +144,13 @@ proto.insider.sdk.Header.deserializeBinaryFromReader = function(msg, reader) {
       msg.setHost(value);
       break;
     case 7:
-      var value = /** @type {!proto.insider.sdk.TransProto} */ (reader.readEnum());
-      msg.setTransProto(value);
+      var value = new proto.insider.sdk.Host;
+      reader.readMessage(value,proto.insider.sdk.Host.deserializeBinaryFromReader);
+      msg.setDest(value);
       break;
     case 8:
-      var value = /** @type {!proto.insider.sdk.DataProto} */ (reader.readEnum());
-      msg.setDataProto(value);
+      var value = /** @type {!proto.insider.sdk.TransProto} */ (reader.readEnum());
+      msg.setTransProto(value);
       break;
     default:
       reader.skipField();
@@ -225,14 +225,15 @@ proto.insider.sdk.Header.serializeBinaryToWriter = function(message, writer) {
       proto.insider.sdk.Host.serializeBinaryToWriter
     );
   }
-  f = message.getTransProto();
-  if (f !== 0.0) {
-    writer.writeEnum(
+  f = message.getDest();
+  if (f != null) {
+    writer.writeMessage(
       7,
-      f
+      f,
+      proto.insider.sdk.Host.serializeBinaryToWriter
     );
   }
-  f = message.getDataProto();
+  f = message.getTransProto();
   if (f !== 0.0) {
     writer.writeEnum(
       8,
@@ -389,11 +390,48 @@ proto.insider.sdk.Header.prototype.hasHost = function() {
 
 
 /**
- * optional TransProto trans_proto = 7;
+ * optional Host dest = 7;
+ * @return {?proto.insider.sdk.Host}
+ */
+proto.insider.sdk.Header.prototype.getDest = function() {
+  return /** @type{?proto.insider.sdk.Host} */ (
+    jspb.Message.getWrapperField(this, proto.insider.sdk.Host, 7));
+};
+
+
+/**
+ * @param {?proto.insider.sdk.Host|undefined} value
+ * @return {!proto.insider.sdk.Header} returns this
+*/
+proto.insider.sdk.Header.prototype.setDest = function(value) {
+  return jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.insider.sdk.Header} returns this
+ */
+proto.insider.sdk.Header.prototype.clearDest = function() {
+  return this.setDest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.insider.sdk.Header.prototype.hasDest = function() {
+  return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * optional TransProto trans_proto = 8;
  * @return {!proto.insider.sdk.TransProto}
  */
 proto.insider.sdk.Header.prototype.getTransProto = function() {
-  return /** @type {!proto.insider.sdk.TransProto} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+  return /** @type {!proto.insider.sdk.TransProto} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
 };
 
 
@@ -402,24 +440,6 @@ proto.insider.sdk.Header.prototype.getTransProto = function() {
  * @return {!proto.insider.sdk.Header} returns this
  */
 proto.insider.sdk.Header.prototype.setTransProto = function(value) {
-  return jspb.Message.setProto3EnumField(this, 7, value);
-};
-
-
-/**
- * optional DataProto data_proto = 8;
- * @return {!proto.insider.sdk.DataProto}
- */
-proto.insider.sdk.Header.prototype.getDataProto = function() {
-  return /** @type {!proto.insider.sdk.DataProto} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
-};
-
-
-/**
- * @param {!proto.insider.sdk.DataProto} value
- * @return {!proto.insider.sdk.Header} returns this
- */
-proto.insider.sdk.Header.prototype.setDataProto = function(value) {
   return jspb.Message.setProto3EnumField(this, 8, value);
 };
 

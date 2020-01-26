@@ -1,4 +1,4 @@
-// source: in_sdk_header.proto
+// source: in_sdk_body_appmodule.proto
 /**
  * @fileoverview
  * @enhanceable
@@ -8,14 +8,15 @@
  */
 // GENERATED CODE -- DO NOT EDIT!
 
-goog.provide('proto.insider.sdk.TransProto');
+goog.provide('proto.insider.sdk.AppModuleState');
 
 /**
  * @enum {number}
  */
-proto.insider.sdk.TransProto = {
-  TRANS_PROTO_INVALID: 0,
-  TCP: 1,
-  UDP: 2
+proto.insider.sdk.AppModuleState = {
+  E_APP_MODULE_IDLE: 0,
+  E_APP_MODULE_INIT: 1,
+  E_APP_MODULE_INSTALLED: 2,
+  E_APP_MODULE_BAD: 3
 };
 
